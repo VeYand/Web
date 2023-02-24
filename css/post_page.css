@@ -1,0 +1,58 @@
+body
+{
+    background-color: #F5F5F5;
+}
+.menu__logotype
+{
+    font-family: 'Lora';
+    font-size: 26px;
+    color: #2E2E2E;
+    text-decoration: none;
+}
+.menu__item
+{
+    font-family: 'Oxygen';
+    font-size: 12px;
+    color: #2E2E2E;
+    text-decoration: none;
+}
+.top-block__title
+{
+    font-family: 'Lora';
+    font-size: 50px;
+    color: #2E2E2E;
+}
+.top-block__subtitle
+{
+    font-family: 'Oxygen';
+    font-size: 17px;
+    color: rgba(46, 46, 46, 0.63);
+}
+.post_content
+{
+    background-color: #F7F7F7;
+}
+.post_content__text
+{
+    font-family: 'Oxygen';
+    font-size: 24px;
+    color: #101315;
+}
+.bottom-block
+{
+    background: rgb(122, 81, 26) url(../images/backgrounds/background_2.png);
+}
+.bottom-block__logotype
+{
+    text-decoration: none;
+    font-size: 26px;
+    font-family: 'Lora';
+    color: #FFFFFF;
+}
+.bottom-navigation__item
+{
+    font-size: 11px;
+    font-family: 'Oxygen';
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+}
