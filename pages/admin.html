@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>
+            Admin Page
+        </title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <link rel="stylesheet" type="text/css" href="static/css/admin.css" /> 
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script>
+            var LogoImageURL = "{{ .LogoImageURL }}";
+                UserPhotoURL = "{{ .UserPhotoURL }}";
+                CameraIconURL = "{{ .CameraIconURL }}";
+                TrashIconURL = "{{ .TrashIconURL }}";
+                LogOutIcon24px = "{{ .LogOutIcon24px }}";
+                AlertIconURL =  "{{ .AlertIconURL }}";
+		        CheckIconURL = "{{ .CheckIconURL }}";
+        </script>
+        <script src="static/js/admin.js" defer></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__container">
+                    <a href="/home" class="header__logo">
+                        <img src="{{ .LogoImageURL }}" alt="Логотип">
+                    </a>
+                    <nav class="header__menu menu">
+                        <ul class="menu__list">
+                            <li class="menu__item"><a href="#" class="menu__link">
+                                <img src="{{ .UserPhotoURL }}" alt="Пользователь">
+                            </a></li>
+                            <li class="menu__item"><a onclick="logout()" class="menu__link">
+                                <img src="{{ .LogOutIcon24px }}" alt="Выход">
+                            </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="main">
+                <div class="top-block">
+                    <div class="top-block__title-block">
+                        <h1 class="top-block__title">New Post</h1>
+                        <span class="top-block__subtitle">Fill out the form bellow and publish your article</span>
+                    </div>
+                    <button onclick="publish()" class="publish-button">Publish</button>
+                </div>
+                <div class="main-container">
+                    <h2 class="main-container__title">Main Information</h2>
+                    <div class="main-container__form">
+                        <form action="" class="form-block">
+                            <div class="form-block__title-field form-block__field">
+                                <span class="title-field__title field-title">Title</span>
+                                <input oninput="changeTitle(this)" type="text" id="title" class="title-field__title-input text-input-field" placeholder="New Post">
+                                <div class="alert-line"></div>
+                                <div class="alert-text">Title is required.</div>
+                            </div>
+                            <div class="form-block__description-field form-block__field">
+                                <span class="description-field__title field-title">Short description</span>
+                                <input oninput="changeDescription(this)" type="text" id="description" class="description-field__description-input text-input-field" placeholder="Please, enter any description">
+                                <div class="alert-line"></div>
+                                <div class="alert-text">Short description is required.</div>
+                            </div>
+                            <div class="form-block__author-name-field form-block__field">
+                                <span class="author-name-field__title field-title">Author name</span>
+                                <input oninput="changeAuthorName(this)" type="text" id="author-name" class="author-name-field__author-name-input text-input-field" placeholder="">
+                                <div class="alert-line"></div>
+                                <div class="alert-text">Author name is required.</div>
+                            </div>
+                            <div class="form-block__author-photo-field form-block__field">
+                                <span class="author-photo-field__title field-title">Author Photo</span>
+                                <input type="file" accept="image/jpeg,image/jpg,image/png" id="author-photo" class="author-photo-field__author-photo-input hidden-input-field" onchange="updateAuthorPhoto(this)">
+                                <label for="author-photo" class="author-photo-field__label">
+                                    <div class="author-photo-field__icon-block">
+                                        <img src="{{ .CameraIconURL }}" alt="AuthorIcon" class="author-photo-field__icon">
+                                    </div>
+                                    <span class="author-photo-field__label-button">Upload</span>
+                                </label>
+                                <div class="alert-text">Author photo is required.</div>
+                            </div>
+                            <div class="form-block__publish-date-field form-block__field">
+                                <span class="publish-date-field__title field-title">Publish Date</span>
+                                <input onchange="changeDate(this)" type="date" id="publish-date" class="publish-date-field__input">
+                                <div class="alert-line"></div>
+                                <div class="alert-text">Date is not valid. Please, enter correct one.</div>
+                            </div>
+                            <div class="form-block__hero-image form-block__hero-image_large form-block__field">
+                                <span class="hero-image__title field-title">Hero Image</span>
+                                <input type="file" onchange="updateLargeHeroPhoto(this)" accept="image/jpeg,image/jpg,image/png,image/gif" id="image-large" class="hero-image__photo-input hero-image__photo-input_large hidden-input-field">
+                                <label for="image-large" class="hero-image__label hero-image__label_large">
+                                    <div class="hero-image__label-button-block">
+                                        <div class="hero-image__label-button-container">
+                                            <img src="{{ .CameraIconURL }}" alt="Hero Image" class="hero-image__label-button-image">
+                                            <span class="hero-image__label-button-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="hero-image__requirements hero-image__requirements_large-image">Size up to 10mb. Format: png, jpeg, gif.</span>
+                                <div class="alert-text">Hero image is required.</div>
+                            </div>
+                            <div class="form-block__hero-image form-block__hero-image_small form-block__field">
+                                <span class="hero-image__title field-title">Hero Image</span>
+                                <input onchange="updateSmallHeroPhoto(this)" type="file" accept="image/jpeg,image/jpg,image/png,image/gif" id="image-small" class="hero-image__photo-input hero-image__photo-input_small hidden-input-field">
+                                <label for="image-small" class="hero-image__label hero-image__label_small">
+                                    <div class="hero-image__label-button-block">
+                                        <div class="hero-image__label-button-container">
+                                            <img src="{{ .CameraIconURL }}" alt="Hero Image" class="hero-image__label-button-image">
+                                            <span class="hero-image__label-button-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="hero-image__requirements  hero-image__requirements_small-image">Size up to 5mb. Format: png, jpeg, gif.</span>
+                                <div class="alert-text">Hero image is required.</div>
+                            </div>
+                        </form>
+                        <div class="preview-block">
+                            <div class="article-preview-container">
+                                <span class="article-preview-container__title">Article preview</span>
+                                <div class="article-preview-container__article-preview">
+                                    <div class="horizontal-gradient horizontal-gradient_article"></div>
+                                    <div class="vertical-gradient vertical-gradient_article"></div>
+                                    <div class="article-preview__top-border-block">
+                                        <div class="top-border-block__point"></div>
+                                        <div class="top-border-block__point"></div>
+                                        <div class="top-border-block__point"></div>
+                                    </div>
+                                    <div class="article-preview__content-container">
+                                        <div class="article-preview__title-block">
+                                            <span class="article-preview__title">New Post</span>
+                                            <span class="article-preview__subtitle">Please, enter any description</span>
+                                        </div>
+                                        <div class="article-preview__image-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-card-preview-container">
+                                <span class="post-card-preview-container__title">Post card preview</span>
+                                <div class="horizontal-gradient horizontal-gradient_post-card"></div>
+                                <div class="vertical-gradient vertical-gradient_post-card"></div>
+                                <div class="post-card-preview-container__post-card-preview">
+                                    <div class="post-card-preview__content-container">
+                                        <div class="post-card-preview__small-image-container"></div>
+                                        <div class="post-card-preview__line post-card-preview__line_E5E5E5"></div>
+                                        <div class="post-card-preview__title-block">
+                                            <span class="post-card-preview__title">New Post</span>
+                                            <span class="post-card-preview__subtitle">Please, enter any description</span>
+                                        </div>
+                                        <div class="post-card-preview__line post-card-preview__line_EFEFEF"></div>
+                                        <div class="post-card-preview__author-box">
+                                            <div class="post-card-preview__author-photo-container"></div>
+                                            <span class="post-card-preview__author">Enter author name</span>
+                                            <span class="post-card-preview__data">4/19/2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="content-block__container">
+                        <h2 class="content-block__title">Content</h2>
+                        <span class="content-block__explanation">Post content (plain text)</span>
+                        <textarea oninput="changeContent(this)" id="content" class="content-block__content-field" placeholder="Type anything you want ..."></textarea>
+                        <div class="alert-text">Content is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

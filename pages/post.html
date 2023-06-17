@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            {{ .Title }}
+        </title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <link rel="stylesheet" type="text/css" href="../static/css/post_page.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__container">
+                    <a href="/home" class="header__logo">
+                        <img src="../static/images/escape_black.svg" alt="Логотип">
+                    </a>
+                    <nav class="header__menu menu">
+                        <ul class="menu__list">
+                            <li class="menu__item"><a href="/home" class="menu__link">HOME</a></li>
+                            <li class="menu__item"><a href="#" class="menu__link">CATEGORIES</a></li>
+                            <li class="menu__item"><a href="#" class="menu__link">ABOUT</a></li>
+                            <li class="menu__item"><a href="#" class="menu__link">CONTACT</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="main">
+                <div class="top-block">
+                    <p class="top-block__title">{{ .Title }}</p>
+                    <p class="top-block__subtitle">{{ .Subtitle }}</p>
+                </div>
+                <section class="post-content">
+                    <img class="post-content__image" src="../{{ .BackgroundSrc }}" alt="{{ .BackgroundAlt }}"/>
+                    <p class="post-content__text">
+                        {{ .Content }}
+                    </p>
+                </section>
+            </div>
+            <div class="bottom-block">
+                <img src="../static/images/background_2.png" alt="Background" class="bottom-block__background">
+                <div class="bottom-box">
+                    <div class="bottom-block__bottom-container">
+                        <div class="bottom-block__title-block">
+                            <span class="bottom-container__title">Stay in Touch</span>
+                            <div class="bottom-container__line"></div>
+                        </div>
+                        <form action="#" class="bottom-container__form-block form-block" name="email-form">
+                            <input type="email" class="form-block__input" maxlength="256" name="email" placeholder="Enter your email address">
+                            <input type="submit" class="form-block__submit-button" value="Submit">
+                        </form>
+                    </div>
+                    <div class="footer-line"></div>
+                    <footer class="footer">
+                        <div class="footer__container">
+                            <a href="/home" class="footer__logo">
+                                <img src="../static/images/escape_white.svg" alt="Логотип">
+                            </a>
+                            <nav class="footer__menu">
+                                <ul class="footer-menu__list">
+                                    <li class="footer-menu__item"><a href="/home" class="footer-menu__link">HOME</a></li>
+                                    <li class="footer-menu__item"><a href="#" class="footer-menu__link">CATEGORIES</a></li>
+                                    <li class="footer-menu__item"><a href="#" class="footer-menu__link">ABOUT</a></li>
+                                    <li class="footer-menu__item"><a href="#" class="footer-menu__link">CONTACT</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
