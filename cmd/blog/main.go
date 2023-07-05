@@ -47,5 +47,5 @@ func main() {
 }
 
 func openDB() (*sql.DB, error) {
-	return sql.Open(dbDriverName, "root:0EfRePizi@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
+	return sql.Open(dbDriverName, "root:#######@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }
